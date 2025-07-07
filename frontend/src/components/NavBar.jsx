@@ -117,8 +117,7 @@ const NavBar = ({ drawerWidth, children }) => {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            <MenuItem onClick={() => handleMenuItemClick('/perfil')}>Perfil</MenuItem>
-            <MenuItem onClick={() => handleMenuItemClick('/cuenta')}>Cuenta</MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick('/profile')}>Perfil</MenuItem>
             <MenuItem onClick={() => handleMenuItemClick('/home')}>Panel</MenuItem>
             <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
           </Menu>

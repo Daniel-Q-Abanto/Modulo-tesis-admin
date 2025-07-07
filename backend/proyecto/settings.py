@@ -76,9 +76,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'plataforma_selta',
-        'USER': 'root',
-        'PASSWORD': '123456',  # <- cámbialo según tu MySQL local
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': '1234567898765432',  # <- cámbialo según tu MySQL local
+        'HOST': 'database-1.c9owsc428h6h.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",

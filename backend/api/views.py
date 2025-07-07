@@ -35,8 +35,9 @@ class UsuarioViewSet(viewsets.ModelViewSet):
         return [IsAuthenticated()]  # Para otras acciones requerir autenticación
 
     def create(self, request, *args, **kwargs):
+        # Asignar el rol por defecto si no se especifica uno
         if 'rol_id' not in request.data:
-            request.data['rol_id'] = 2  # Asumiendo que el id_rol 2 corresponde al rol "trabajador"
+            request.data['rol_id'] = 2  # El rol "trabajador" tiene el id_rol 2
 
         try:
             rol = RolesYPermisos.objects.get(id_rol=request.data['rol_id'])
@@ -49,14 +50,22 @@ class UsuarioViewSet(viewsets.ModelViewSet):
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
+    # Método GET para obtener los datos del perfil del usuario autenticado
     def get(self, request):
         usuario = request.user
-        return Response({
-            "correo": usuario.correo,
-            "nombre_usuario": usuario.nombre_usuario,
-            "rol": usuario.rol.rol,
-            "permiso": usuario.rol.permiso
-        })
+        serializer = UsuarioSerializer(usuario)
+        return Response(serializer.data)
+
+    # Método PUT para actualizar los datos del perfil del usuario autenticado
+    def put(self, request):
+        usuario = request.user
+        serializer = UsuarioSerializer(usuario, data=request.data, partial=True)  # partial=True permite actualizaciones parciales
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()

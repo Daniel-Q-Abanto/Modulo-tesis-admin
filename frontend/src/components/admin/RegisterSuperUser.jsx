@@ -20,9 +20,10 @@ const Register = () => {
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/roles/')
       .then((res) => {
-        setListaRoles(res.data);
-        if (res.data.length > 0) {
-          setRol(res.data[0].id_rol);
+        const rolesFiltrados = res.data.filter(role => role.rol !== 'administrador'); // Filtrar el rol "administrador"
+        setListaRoles(rolesFiltrados);
+        if (rolesFiltrados.length > 0) {
+          setRol(rolesFiltrados[0].id_rol);  // Selecciona el primer rol disponible que no es administrador
         }
       })
       .catch((err) => {
@@ -44,8 +45,8 @@ const Register = () => {
       await axios.post('http://127.0.0.1:8000/usuarios/', {
         correo,
         nombre_usuario,
-        password: contraseña,  // Asegúrate de enviar "password" en lugar de "contraseña"
-        rol_id: rol 
+        password: contraseña,
+        rol_id: rol
       });
 
       setMessage('Usuario registrado con éxito');

@@ -20,6 +20,7 @@ import AgregarUsuario from './components/usuarios/AgregarUsuario';
 import EditarUsuario from './components/usuarios/EditarUsuario';
 import EliminarUsuario from './components/usuarios/EliminarUsuario';
 import EliminarHistorialIA from './components/historial_ia/EliminarHistorialIA'
+import Profile from './components/admin/Profile';
 
 
 
@@ -42,6 +43,7 @@ function App() {
               <NavBar drawerWidth={drawerWidth}>
                 <Routes>
                   <Route path="home" element={<Home />} />
+                  <Route path="profile" element={<Profile />} />
                   <Route path="about" element={<About />} />
                   <Route path="usuarios" element={<Usuario />} />
                   <Route path="historiales" element={<HistorialIA />} />

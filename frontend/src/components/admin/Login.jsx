@@ -95,13 +95,6 @@ const Login = () => {
           </Button>
         </form>
 
-        <Grid container justifyContent="flex-end" sx={{ mt: 2 }}>
-          <Grid item>
-            <Link component={RouterLink} to="/register" variant="body2">
-              ¿No tienes una cuenta? Regístrate
-            </Link>
-          </Grid>
-        </Grid>
       </Box>
     </Container>
   );

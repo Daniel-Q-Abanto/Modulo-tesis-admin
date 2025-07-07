@@ -25,7 +25,7 @@ router.register('roles', RolesYPermisosViewSet, basename='roles')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('me/', MeView.as_view()),
+    path('me/', MeView.as_view(), name='profile'),
     path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
