@@ -121,8 +121,8 @@ class Orden(models.Model):
 class HistorialIa(models.Model):
     id_historial = models.AutoField(primary_key=True)
     prompt = models.TextField()
-    imagen_generada = models.CharField(max_length=255)
-    fecha_generacion = models.DateTimeField()
+    imagen_generada = models.TextField(blank=True, null=True)
+    fecha_generacion = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, db_column='id_usuario')
 
     def __str__(self):
